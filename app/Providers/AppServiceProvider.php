@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        session_start();
+        if(isset($_SESSION['producto_compra'])){
+            $carrito = $_SESSION['producto_compra'];
+            view()->share('carrito', $carrito);
+
+        }
+
     }
 }

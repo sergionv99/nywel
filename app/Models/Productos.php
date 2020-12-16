@@ -17,5 +17,10 @@ class Productos extends Model
         return $this->belongsTo('App\Model\User','id');
     }
 
+    public function photos()
+    {
+        return $this->hasMany('App\Models\ProductoImagenes','producto_id');
+    }
+
 
 }

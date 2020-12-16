@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Productos;
 use App\Models\ProductoCaracteristica;
-use App\Models\ProductosImagenes;
+use App\Models\ProductoImagenes;
 use App\Models\User;
 
 class ProductosController extends Controller
@@ -93,16 +93,16 @@ class ProductosController extends Controller
 
         $photos = $request->file('photo');
 
-//        if($photos) {
-//            foreach ($photos as $photo) {
-//                $path = $photo->store('photos', 'public');
-//                Properties_photos::create([
-//                    'propiedad_id' => $producto->id,
-//                    'photo' => $path
-//                ]);
-//
-//            }
-//        }
+        if($photos) {
+            foreach ($photos as $photo) {
+                $path = $photo->store('productos', 'public');
+                    ProductoImagenes::create([
+                    'producto_id' => $producto->id,
+                    'imagen' => $path
+                ]);
+
+            }
+        }
 
         return redirect()->route('gestion.index')->with('success','Producto añadido');
     }
@@ -115,15 +115,16 @@ class ProductosController extends Controller
      */
     public function show($id)
     {
+
         $producto=Productos::find($id);
 
-
+        $productosimgs = $producto->photos()->get('imagen');
 //        $photospropertys = $producto->photos()->get('photo');
 //        if($photospropertys != null){
 //            $total = count($photospropertys);
 //        }
 
-        return view('productos.show',compact('producto'));
+        return view('productos.show',compact('producto', 'productosimgs'));
     }
 
     /**

@@ -7,6 +7,9 @@
         <section class="show-productos">
             <div class="show-productos-img">
                 <img src="{{asset('storage/'.$producto->portada)}}">
+                @foreach($productosimgs as $imgs)
+                    <img style="height: 100px; width: 100px;" src="{{asset('storage/'.$imgs->imagen)}}">
+                     @endforeach
             </div>
 {{--            @if($photospropertys)--}}
 {{--                <div id="carouselExampleControls" class="carousel slide" data-interval="false" data-ride="carousel">--}}

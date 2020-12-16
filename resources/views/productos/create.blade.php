@@ -40,8 +40,8 @@
             <label for="portada">Imagen</label>
             <input type="file" name="portada" required>
 
-{{--            <label for="photo">Imagenes</label>--}}
-{{--            <input type="file" name="photo[]" multiple>--}}
+            <label for="photo">Imagenes</label>
+            <input type="file" name="photo[]" multiple>
 
            <br>
             <label for="published">Publicar</label>

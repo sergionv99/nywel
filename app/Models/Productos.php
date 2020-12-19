@@ -21,6 +21,10 @@ class Productos extends Model
     {
         return $this->hasMany('App\Models\ProductoImagenes','producto_id');
     }
+    public function caracteristicas()
+    {
+        return $this->hasMany('App\Models\ProductoCaracteristica','producto_id');
+    }
 
 
 }

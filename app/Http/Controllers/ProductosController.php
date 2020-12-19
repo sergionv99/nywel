@@ -119,12 +119,13 @@ class ProductosController extends Controller
         $producto=Productos::find($id);
 
         $productosimgs = $producto->photos()->get('imagen');
+        $productoscarac = $producto->caracteristicas()->get();
 //        $photospropertys = $producto->photos()->get('photo');
 //        if($photospropertys != null){
 //            $total = count($photospropertys);
 //        }
 
-        return view('productos.show',compact('producto', 'productosimgs'));
+        return view('productos.show',compact('producto', 'productosimgs', 'productoscarac'));
     }
 
     /**

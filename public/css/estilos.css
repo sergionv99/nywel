@@ -21,8 +21,16 @@ body{
     grid-template-colunms: 1fr;
     background-color: #FFF3E9;
     width: 100%;
-
-
+    /*display: none;*/
+}
+#header-general-sticky{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 15vh;
+    padding: 15px;
+    position: fixed;
+    background-color: #FFF3E9;
+    width: 100%;
 }
 .top-header{
     display: grid;
@@ -32,6 +40,7 @@ body{
     background-color: black;
     color: white;
     top: 0;
+    display: none;
 
 
 }.top-header svg{
@@ -151,10 +160,14 @@ display: grid;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 5vh;
+    height: auto;
+
 }
 .show-productos-img{
     justify-self: end;
  height: 60vh;
+
+
     /*grid-column-start: 2;*/
 
  }
@@ -531,4 +544,47 @@ text-underline: #3490dc;
 .busquedas{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.zona-producto{
+    height: 700px;
+}
+.imgs-minis{
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.navegador-2{
+    text-align: center;
+    padding-bottom: 5vh;
+    display: none;
+    place-self: center;
+    font-size: 18pt;
+    padding-top: 35px;
+}
+.titulo-caracteristicas{
+    font-weight: bold;
+}
+.detalle-producto{
+    cursor: pointer;
+ padding: 5px;
+background-color: #F0F0F0;
+    font-weight: bold;
+}
+
+.activa{
+    background-color: #E1E1E1;
+
+}
+.detalle-producto svg{
+ margin-bottom: 5px;
+}
+.detalle-producto-primero{
+    padding-right: 12px;
+}
+.producto-opiniones, .producto-caracteristicas{
+    height: 200px;
+}
+.producto-opiniones{
+    display: none;
 }

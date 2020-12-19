@@ -68,6 +68,13 @@
             </a>
 
         </article>
+            <article class="navegador-2"><nav>
+                    <a href="{{route('home.index')}}">Home</a>
+                    <a href="{{route('productos.index')}}">Productos</a>
+                    <a>Blog</a>
+                    <a>Cursos</a>
+                </nav>
+            </article>
         <article class="header-top-elementos">
             <div>
                 <svg width="85" height="94" viewBox="0 0 85 94" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -12,4 +12,8 @@ class ProductoCaracteristica extends Model
     protected $fillable = [
         'material', 'dimensiones', 'color', 'litros', 'mililitros', 'tamanyo', 'producto_id'
     ];
+
+    public function producto(){
+        return $this->belongsTo('App\Models\Producto','id');
+    }
 }

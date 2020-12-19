@@ -125,12 +125,20 @@ $( document ).ready(function() {
         var scroll = $(window).scrollTop();
 
         //>=, not <=
-        if (scroll >= 100) {
+        if (scroll >= 150) {
             // clearHeader, not clearheader - caps H
             $("#header-general").addClass("sticky");
+            $(".logo").css("grid-column-start", 1);
+            $(".header-top-elementos").css("grid-column-start", 3);
+            $(".navegador").css("display", "none");
+            $(".navegador-2").css("display", "block");
+            $(".navegador-2").css("grid-column-start", 2);
         }
         else {
             $("#header-general").removeClass("sticky");
+            $(".logo").css("grid-column-start", 2);
+            $(".navegador").css("display", "block");
+            $(".navegador-2").css("display", "none");
         }
     }); //missing );
 
@@ -201,6 +209,46 @@ $( document ).ready(function() {
 
     $(".delete").on("submit", function(){
         return confirm("¿Estas segura de eliminar Laura?");
+    });
+
+    $(".imgs-minis").on('click', function () {
+
+        var imgActual =  $(this).parent().parent().find('img:visible').attr('id');
+        var imgActualAtributo =  $(this).parent().parent().find('img:visible').attr('data-img-producto');
+
+        var miniatura =  $(this).attr('data-img-miniatura');
+
+
+        if(miniatura != imgActualAtributo){
+        $('#'+imgActual).hide();
+        $('#im'+miniatura).fadeIn('slow');
+        // $(this).parent().parent().find(imgActual).hide();
+        }
+    });
+
+
+    $('.detalle-producto-primero').on('click', function () {
+
+        $(this).addClass("activa");
+        $(".detalle-producto-ultimo").removeClass("activa");
+        $(".producto-caracteristicas").show();
+        $(".producto-opiniones").hide();
+
+    });
+    $('.detalle-producto-ultimo').on('click', function () {
+
+        $(this).addClass("activa");
+        $(".detalle-producto-primero").removeClass("activa");
+        $(".producto-caracteristicas").hide();
+        $(".producto-opiniones").show();
+
+
+    });
+    $('.p-img').on('change', function () {
+        alert("cambia");
+        myFile = $('.p-img').prop('files');
+        alert(myFile[0][0]);
+        .Fil
     });
 
     });

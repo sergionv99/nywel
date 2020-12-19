@@ -2,64 +2,28 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container zona-producto">
             <a href="{{route('productos.index')}}">Atras</a>
         <section class="show-productos">
             <div class="show-productos-img">
-                <img src="{{asset('storage/'.$producto->portada)}}">
+                @php
+                    $imgpr =0;
+                    $pratributo =0;
+                    $miniatura = 0;
+                @endphp
+                <div>
+                <img id="im{{$imgpr}}" data-img-producto="{{$pratributo}}" src="{{asset('storage/'.$producto->portada)}}">
+                    @foreach($productosimgs as $imgs)
+                        <img id="im{{$imgpr = $imgpr + 1}}" data-img-producto="{{$pratributo = $pratributo + 1}}" style="display: none" src="{{asset('storage/'.$imgs->imagen)}}">
+                    @endforeach
+                </div>
+                <div class="producto-imgs-miniatura">
+                    <img class="imgs-minis"  data-img-miniatura="{{$miniatura}}" style="height:100px; width: 100px;" src="{{asset('storage/'.$producto->portada)}}">
                 @foreach($productosimgs as $imgs)
-                    <img style="height: 100px; width: 100px;" src="{{asset('storage/'.$imgs->imagen)}}">
+                    <img class="imgs-minis"  data-img-miniatura="{{$miniatura = $miniatura + 1}}" style="height: 100px; width: 100px;" src="{{asset('storage/'.$imgs->imagen)}}">
                      @endforeach
+                </div>
             </div>
-{{--            @if($photospropertys)--}}
-{{--                <div id="carouselExampleControls" class="carousel slide" data-interval="false" data-ride="carousel">--}}
-{{--                    <div class="carousel-inner">--}}
-{{--                        @php--}}
-{{--                            $tam =0;--}}
-{{--                        @endphp--}}
-
-{{--                        @foreach($photospropertys as $photos)--}}
-{{--                            --}}{{--                    <p>{{$tam}}</p>--}}
-
-{{--                            <div class="carousel-item {{ $loop->first ? ' active' : '' }}">--}}
-{{--                                <img id=" {{$tam = $tam + 1}}" src="{{asset('storage/'.$photos->photo)}}" style="width: 500px">--}}
-{{--                                <p class="slider-n">{{$tam ?? ''}}/{{$total}}</p>--}}
-{{--                                <p>  {{$photos->id}} </p>--}}
-{{--                            </div>--}}
-
-{{--                        @endforeach--}}
-
-
-
-{{--                    </div>--}}
-
-{{--                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">--}}
-{{--                    <span class="carousel-control-prev-icon" >--}}
-
-{{--<svg width="44" height="46" viewBox="0 0 44 46" fill="none" xmlns="http://www.w3.org/2000/svg">--}}
-{{--<rect x="-0.500132" y="-0.499731" width="42.9882" height="44" transform="matrix(-1 0.000537106 -0.000263414 -1 42.9996 44.0008)" fill="#F0F0F0" stroke="black"/>--}}
-{{--<path d="M1.6648 24.2593C1.11849 23.8546 1.12355 23.0362 1.6748 22.6422L18.8618 10.3599C19.5257 9.88543 20.4502 10.3667 20.4451 11.1841L20.2912 36.0866C20.2862 36.904 19.3558 37.3669 18.6979 36.8794L1.6648 24.2593Z" fill="black"/>--}}
-{{--<rect x="17.1388" y="18.8234" width="25.5566" height="9.44506" rx="2" fill="black"/>--}}
-{{--</svg>--}}
-
-{{--</span>--}}
-{{--                    </a>--}}
-{{--                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">--}}
-{{--                    <span class="carousel-control-next-icon" style="margin-right:25px">--}}
-
-
-{{--<svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">--}}
-{{--<rect x="0.499944" y="0.49992" width="43.0241" height="43.9177" transform="matrix(1 -0.000159545 -0.000112027 1 0.0170238 0.0236546)" fill="#F0F0F0" stroke="black"/>--}}
-{{--<path d="M42.376 20.74C42.9235 21.1449 42.9181 21.9649 42.3654 22.3586L25.1604 34.6115C24.4962 35.0845 23.5731 34.6028 23.5784 33.786L23.7418 8.93016C23.7472 8.11335 24.6766 7.65055 25.3344 8.13709L42.376 20.74Z" fill="black"/>--}}
-{{--<rect x="26.8903" y="26.1624" width="25.5775" height="9.42779" rx="2" transform="rotate(-179.978 26.8903 26.1624)" fill="black"/>--}}
-{{--</svg>--}}
-
-
-{{--</span>--}}
-
-{{--                    </a>--}}
-{{--                    @endif--}}
-{{--                </div>--}}
 
                 <article>
                     <h1>{{$producto->nombre}}</h1>
@@ -84,8 +48,6 @@
                     </article>
                 </article>
         </section>
-        <section>
-
         </section>
         <script>
             $('.btn-add-cart').click(function () {
@@ -116,4 +78,26 @@
             });
         </script>
     </div>
+    <section class="container">
+        <article>
+           <span class="detalle-producto activa detalle-producto-primero">DETALLES DEL PRODUCTO</span><span class="detalle-producto detalle-producto-ultimo">OPINIONES
+                <svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.9755 1.08156L12.6064 6.10081C12.8072 6.71885 13.3831 7.13729 14.033 7.13729H19.3105C19.7949 7.13729 19.9963 7.75709 19.6044 8.0418L15.3348 11.1439C14.8091 11.5258 14.5891 12.2029 14.7899 12.8209L16.4207 17.8402C16.5704 18.3008 16.0432 18.6839 15.6513 18.3992L11.3817 15.2971C10.8559 14.9151 10.1441 14.9152 9.61832 15.2971L5.34869 18.3992C4.95683 18.6839 4.42959 18.3008 4.57927 17.8402L6.21012 12.8209C6.41093 12.2029 6.19095 11.5258 5.66522 11.1439L1.39558 8.04179C1.00373 7.7571 1.20511 7.13729 1.68948 7.13729H6.96703C7.61687 7.13729 8.19281 6.71885 8.39362 6.10081L10.0245 1.08156C10.1741 0.620905 10.8259 0.620902 10.9755 1.08156Z" fill="#FDDE77" stroke="black"/>
+</svg>
+</span>
+            <div class="producto-caracteristicas">
+            @foreach($productoscarac as $caracteristica)
+                <p><span class="titulo-caracteristicas">Marca: </span>{{$caracteristica->marca}}</p>
+                <p><span class="titulo-caracteristicas">Color: </span>{{$caracteristica->color}}</p>
+                <p><span class="titulo-caracteristicas">Dimensiones: </span>{{$caracteristica->Dimensiones}}</p>
+                <p><span class="titulo-caracteristicas">Peso: </span>{{$caracteristica->peso}}</p>
+                @endforeach
+            <p><span class="titulo-caracteristicas">Acerca de: </span>{{$producto->descripcion}}</p>
+            </div>
+
+            <div class="producto-opiniones">
+
+            </div>
+        </article>
+    </section>
 @endsection

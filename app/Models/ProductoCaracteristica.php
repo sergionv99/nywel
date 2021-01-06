@@ -10,7 +10,7 @@ class ProductoCaracteristica extends Model
     use HasFactory;
 
     protected $fillable = [
-        'material', 'dimensiones', 'color', 'litros', 'mililitros', 'tamanyo', 'producto_id'
+        'material', 'dimensiones', 'color', 'litros', 'mililitros', 'tamanyo', 'producto_id', 'marca', 'potencia'
     ];
 
     public function producto(){

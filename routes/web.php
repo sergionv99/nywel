@@ -34,12 +34,14 @@ Route::resource('blog','PostController');
 Route::resource('productos','ProductosController');
 Route::resource('carrito','CarritoController');
 Route::resource('gestion','GestionController');
+Route::resource('categorias','CategoriasController');
 
 Route::post('ajax/request/store', 'CarritoController@fill_cart')->name('ajax.store');
 Route::post('ajax/request/remove', 'CarritoController@remove_cart')->name('ajax.remove');
 Route::post('ajax/request/adjust', 'CarritoController@cantidad_cart')->name('ajax.adjust');
 
 Route::get('ajax/request/search', 'GestionController@search_gestion')->name('ajax.search');
+Route::get('ajax/request/categoria', 'ProductosController@filtro_categoria')->name('ajax.categorias');
 
 //Route::resources([
 //    'blog' => PostController::class,

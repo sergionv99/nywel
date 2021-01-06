@@ -11,18 +11,14 @@
             <div>
                 <h3>Datos principales</h3>
             <label for="tipo">Tipo de producto</label>
+                <select name="tipo" id="tipo">
+                @foreach($categorias as $categoria)
 
-            <select name="tipo" id="tipo">
-                <option value="plancha">Plancha</option>
-                <option value="cepillo">Cepillo</option>
-                <option value="peine">peine</option>
-                <option value="tratamientos">tratamientos</option>
-                <option value="acondicionador">Acondicionador</option>
-                <option value="champu">Champu</option>
-                <option value="secador">Secador</option>
-                <option value="secador">Tenacilla</option>
-                <option value="Necesser">Necesser</option>
-            </select>
+                        <option value={{$categoria->id}}>{{$categoria->nombre}}</option>
+
+                    @endforeach
+                </select>
+
 <br>
             <label for="nombre">Nombre </label>
             <input type="text" name="nombre" class="form form-control" required>

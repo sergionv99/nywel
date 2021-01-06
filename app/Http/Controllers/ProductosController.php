@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Productos;
 use App\Models\ProductoCaracteristica;
+use App\Models\ProductoCategorias;
 use App\Models\ProductoImagenes;
+use App\Models\Categorias;
 use App\Models\User;
 
 class ProductosController extends Controller
@@ -21,7 +23,32 @@ class ProductosController extends Controller
     public function index()
     {
         $productos= Productos::all();
-        return view('productos.index',compact('productos'));
+
+//        $categorias = ProductoCategorias::find(3);
+//        $categorias2 = ProductoCategorias::all();
+        $categorias = Categorias::all()->sortBy('posicion');
+
+
+//        $categoriasa = Categorias::find(2);
+
+//        $categorias = $categoriasa->product;
+//        $categorias =  $categorias2->product;
+//        $categorias =  $categorias2;
+$categorizado =[];
+        foreach ($categorias as $categoria){
+//            $categorizado[] = $categoria->nombre;
+//            var_dump($categoria->nombre);
+            foreach ($categoria->product as $cat){
+
+                $categorizado[$categoria->nombre][] = $cat;
+//                var_dump($cat->nombre);
+
+            }
+
+        }
+
+
+        return view('productos.index',compact('productos', 'categorizado'));
     }
 
     /**
@@ -31,7 +58,9 @@ class ProductosController extends Controller
      */
     public function create()
     {
-        return view('productos.create');
+        $categorias = ProductoCategorias::all();
+
+        return view('productos.create',compact('categorias'));
     }
 
     /**
@@ -68,13 +97,14 @@ class ProductosController extends Controller
 
 
 
+
         $producto = Productos::create([
             'nombre'=>$request->nombre,
             'descripcion'=>$request->descripcion,
             'user_id'=>$id_user,
             'precio'=>$request->precio,
             'stock'=>$request->stock,
-            'tipo'=>$request->tipo,
+            'categoria'=>$request->tipo,
             'estado'=>$published,
             'portada'=>$facade,
             'referencia'=>$ref
@@ -89,6 +119,8 @@ class ProductosController extends Controller
             'litros'=>$request->litros,
             'color'=>$request->color,
             'mililitros'=>$request->mililitros,
+            'marca'=>$request->marca,
+            'potencia'=>$request->potencia,
         ]);
 
         $photos = $request->file('photo');
@@ -124,8 +156,10 @@ class ProductosController extends Controller
 //        if($photospropertys != null){
 //            $total = count($photospropertys);
 //        }
+        $puta = ProductoCategorias::all();
+        $categori = $producto->categorias->nombre;
 
-        return view('productos.show',compact('producto', 'productosimgs', 'productoscarac'));
+        return view('productos.show',compact('producto', 'productosimgs', 'productoscarac', 'puta'));
     }
 
     /**
@@ -137,7 +171,13 @@ class ProductosController extends Controller
     public function edit($id)
     {
         $producto = Productos::find($id);
-        return view('productos.edit', compact('producto'));
+
+//        $categori = $producto->categoriaN->nombre;
+//        $categori = $producto->photos->imagen;
+        $categori = $producto->categorias->nombre;
+
+        $categorias = ProductoCategorias::all();
+        return view('productos.edit', compact('producto', 'categorias'));
     }
 
     /**
@@ -236,4 +276,19 @@ class ProductosController extends Controller
 
         }
     }
+    public function filtro_categoria(Request $request)
+    {
+        $id_cat = $request->id_categoria;
+        $categoria = ProductoCategorias::find($id_cat);
+
+        $productos = $categoria->product;
+
+//            $productos = Productos::where("nombre", "LIKE", "%{$request->get('idpr')}%")
+//                ->orWhere("tipo", "LIKE", "%{$request->get('idpr')}%")
+////                ->orWhere("referencia", "LIKE", "%{$request->get('search')}%")
+//                ->paginate(25);
+////            $productos = "<article>";
+            return response()->json($productos);
+    }
+
 }

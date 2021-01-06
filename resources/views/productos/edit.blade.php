@@ -13,15 +13,12 @@
                     <label for="tipo">Tipo de producto</label>
 
                     <select name="tipo" id="tipo">
-                        <option value="plancha">Plancha</option>
-                        <option value="cepillo">Cepillo</option>
-                        <option value="peine">peine</option>
-                        <option value="tratamientos">tratamientos</option>
-                        <option value="acondicionador">Acondicionador</option>
-                        <option value="champu">Champu</option>
-                        <option value="secador">Secador</option>
-                        <option value="secador">Tenacilla</option>
-                        <option value="Necesser">Necesser</option>
+                        <option selected ></option>
+                        @foreach($categorias as $categoria)
+
+                            <option value={{$categoria->id}}>{{$categoria->nombre}}</option>
+
+                        @endforeach
                     </select>
                     <br>
                     <label for="nombre">Nombre </label>
@@ -39,7 +36,7 @@
                     <br>
                     <label for="portada">Imagen</label>
                     <input type="file" name="portada" class="p-img" required>
-
+                    <img class="miniaturas-gestion" id="image" />
                     <label for="photo">Imagenes</label>
                     <input type="file" name="photo[]" multiple>
 

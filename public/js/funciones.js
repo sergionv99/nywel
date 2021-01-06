@@ -245,11 +245,17 @@ $( document ).ready(function() {
 
     });
     $('.p-img').on('change', function () {
-        alert("cambia");
-        myFile = $('.p-img').prop('files');
-        alert(myFile[0][0]);
-        .Fil
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            // get loaded data and render thumbnail.
+            document.getElementById("image").src = e.target.result;
+        };
+        reader.readAsDataURL(this.files[0]);
+        // myFile = $('.p-img').prop('files');
+        // alert(myFile[0][0]);
+
     });
+
 
     });
 

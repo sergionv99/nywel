@@ -12,6 +12,9 @@
                     $miniatura = 0;
                 @endphp
                 <div>
+{{--                    @foreach($puta as $tu)--}}
+{{--                   <p>Aqui {{$tu->nombre}} </p>--}}
+{{--                    @endforeach--}}
                 <img id="im{{$imgpr}}" data-img-producto="{{$pratributo}}" src="{{asset('storage/'.$producto->portada)}}">
                     @foreach($productosimgs as $imgs)
                         <img id="im{{$imgpr = $imgpr + 1}}" data-img-producto="{{$pratributo = $pratributo + 1}}" style="display: none" src="{{asset('storage/'.$imgs->imagen)}}">
@@ -34,7 +37,7 @@
                     @endif
                     <p>{{$producto->descripcion}}</p>
                     <article class="show-productos-cantidad">
-                        <span>Cantidad:</span>
+                        <span>CANTIDAD:</span>
                         <br>
                         <button class="boton-menos">-</button>
                         <input class="input-value" type="text" value="1">
@@ -86,6 +89,7 @@
 </svg>
 </span>
             <div class="producto-caracteristicas">
+                <p>{{$producto->categorias->nombre}}</p>
             @foreach($productoscarac as $caracteristica)
                 <p><span class="titulo-caracteristicas">Marca: </span>{{$caracteristica->marca}}</p>
                 <p><span class="titulo-caracteristicas">Color: </span>{{$caracteristica->color}}</p>

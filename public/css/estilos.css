@@ -3,6 +3,8 @@
     margin: 0;
     padding: 0;
 }
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
 button {
     background-color: Transparent;
     background-repeat:no-repeat;
@@ -135,6 +137,11 @@ display: grid;
     /*height: 234px;*/
 }
 
+.global-productos{
+    display: grid;
+    grid-template-columns: 300px 1fr;
+}
+
 
 .productos-nuevo form{
 
@@ -182,6 +189,18 @@ max-height: 100%;
     display: none;
 }
 
+
+.categoria{
+    cursor: pointer;
+    padding-left: 20px;
+}
+.categoria-selecionada{
+    font-weight: bold;
+    color: red;
+}
+.listado-categorias{
+    padding-left: 45px;
+}
 /*-------------CARRITO---------------*/
 .index-carrito{
     display: grid;
@@ -548,6 +567,7 @@ text-underline: #3490dc;
 
 .zona-producto{
     height: 700px;
+    font-family: Lato;
 }
 .imgs-minis{
     border: 1px solid black;
@@ -587,4 +607,8 @@ background-color: #F0F0F0;
 }
 .producto-opiniones{
     display: none;
+}
+.miniaturas-gestion{
+    width: 100px;
+    height: 100px;
 }

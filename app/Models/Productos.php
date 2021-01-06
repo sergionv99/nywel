@@ -10,11 +10,11 @@ class Productos extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nombre', 'precio', 'descripcion', 'stock', 'tipo', 'portada', 'estado', 'descuento', 'precio_descuento', 'created_at' , 'user_id' , 'referencia'
+        'nombre', 'precio', 'descripcion', 'stock', 'tipo', 'portada', 'estado', 'descuento', 'precio_descuento', 'created_at' , 'user_id' , 'referencia', 'categoria'
     ];
 
     public function user(){
-        return $this->belongsTo('App\Model\User','id');
+        return $this->belongsTo('App\Models\User','id');
     }
 
     public function photos()
@@ -24,6 +24,11 @@ class Productos extends Model
     public function caracteristicas()
     {
         return $this->hasMany('App\Models\ProductoCaracteristica','producto_id');
+    }
+
+    public function categorias()
+    {
+        return $this->belongsTo('App\Models\ProductoCategorias','categoria_id');
     }
 
 
